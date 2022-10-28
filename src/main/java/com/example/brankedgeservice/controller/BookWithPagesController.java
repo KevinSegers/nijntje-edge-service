@@ -51,8 +51,8 @@ public class BookWithPagesController {
 
     }
 
-    @GetMapping("/interactivebooks/book/{bookTitle}/page/{pageNumber}")
-    public Page getPageByBooktitleAndPagenumber(@RequestParam String bookTitle, @RequestParam int pageNumber){
+    @GetMapping("/interactivebooks/book/{bookTitle}/page/{pageNumber}") //bekijken!! sonarcloud geeft vulnerability aan
+    public Page getPageByBooktitleAndPagenumber(@PathVariable String bookTitle, @PathVariable int pageNumber){
         Page page = restTemplate.getForObject("http://"+pageServiceBaseUrl+"/pages/bookTitle/"+bookTitle+"/pageNumber/"+pageNumber, Page.class );
         return page;
     }
