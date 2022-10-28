@@ -34,4 +34,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: artifact
-          path: ./target/edge-service-0.0.1-SNAPSHOT.jar
+          path: ./target/brank-edge-service-0.0.1-SNAPSHOT.jar
