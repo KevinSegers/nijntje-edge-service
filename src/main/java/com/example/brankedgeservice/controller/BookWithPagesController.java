@@ -52,7 +52,7 @@ public class BookWithPagesController {
     }
 
     @GetMapping("/interactivebooks/book/{bookTitle}/page/{pageNumber}")
-    public Page getPageByBooktitleAndPagenumber(@PathVariable String bookTitle, @PathVariable int pageNumber){
+    public Page getPageByBooktitleAndPagenumber(@RequestParam String bookTitle, @RequestParam int pageNumber){
         Page page = restTemplate.getForObject("http://"+pageServiceBaseUrl+"/pages/bookTitle/"+bookTitle+"/pageNumber/"+pageNumber, Page.class );
         return page;
     }
