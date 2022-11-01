@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class BookWithPagesController {
@@ -23,6 +25,12 @@ public class BookWithPagesController {
 
     @Value("${bookservice.baseurl}")
     private String bookServiceBaseUrl;
+
+
+    @GetMapping("/interactivebooks/categories")
+    public List<String> getCategories() {
+        return EnumSet.allOf(Category.class).stream().map(Category::name).collect(Collectors.toList());
+    }
 
     @GetMapping("/interactivebooks/category/{category}")
     public List<BookWithPages> getBooksByCategory(@PathVariable Category category){
