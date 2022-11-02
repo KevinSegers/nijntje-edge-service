@@ -8,11 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @RestController
 public class BookWithPagesController {
@@ -27,9 +23,19 @@ public class BookWithPagesController {
     private String bookServiceBaseUrl;
 
 
-    @GetMapping("/interactivebooks/categories")
-    public List<String> getCategories() {
-        return EnumSet.allOf(Category.class).stream().map(Category::name).collect(Collectors.toList());
+    //Nu niet meer nodig omdat ze nu samen in 1 endpoint zitten. Nog even laten staan voor referentie
+//    @GetMapping("/interactivebooks/categories")
+//    public List<String> getCategories() {
+//        return EnumSet.allOf(Category.class).stream().map(Category::getLabel).collect(Collectors.toList());
+//    }
+//    @GetMapping("/interactivebooks/categories/urls")
+//    public List<String> getCategoriesUrls() {
+//        return EnumSet.allOf(Category.class).stream().map(Category::getUrl).collect(Collectors.toList());
+//    }
+
+    @GetMapping("/interactivebooks/categorieswithurls")
+    public List<Map<String, String>> getCategorieswithUrls() {
+        return Category.getCategorieswithUrls();
     }
 
     @GetMapping("/interactivebooks/category/{category}")
@@ -39,12 +45,13 @@ public class BookWithPagesController {
 
         ResponseEntity<List<Book>> responseEntityBooks =
                 restTemplate.exchange("http://" + bookServiceBaseUrl + "/books/category/" + category,
-                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Book>>() {
+                        HttpMethod.GET, null, new ParameterizedTypeReference<>() {
                         });
 
         List<Book> books = responseEntityBooks.getBody();
 
 
+        assert books != null;
         for (Book book: books) {
             String bookTitle = book.getTitle();
            List<Page> pages =
@@ -61,8 +68,7 @@ public class BookWithPagesController {
 
     @GetMapping("/interactivebooks/book/{bookTitle}/page/{pageNumber}") //bekijken!! sonarcloud geeft vulnerability aan
     public Page getPageByBooktitleAndPagenumber(@PathVariable String bookTitle, @PathVariable int pageNumber){
-        Page page = restTemplate.getForObject("http://"+pageServiceBaseUrl+"/pages/bookTitle/"+bookTitle+"/pageNumber/"+pageNumber, Page.class );
-        return page;
+        return restTemplate.getForObject("http://"+pageServiceBaseUrl+"/pages/bookTitle/"+bookTitle+"/pageNumber/"+pageNumber, Page.class );
     }
 
 
