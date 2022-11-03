@@ -28,7 +28,7 @@ public enum Category {
         return url;
     }
 
-    public static List<Map<String, String>> getCategorieswithUrls() {
+    public static List<Map<String, String>> getCategoriesWithUrls() {
         return Arrays.stream(Category.values()).map(e -> {
             Map<String, String> m = new HashMap<>();
             m.put("label", e.getLabel());

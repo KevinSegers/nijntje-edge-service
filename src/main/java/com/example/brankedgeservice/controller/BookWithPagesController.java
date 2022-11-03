@@ -35,7 +35,7 @@ public class BookWithPagesController {
 
     @GetMapping("/interactivebooks/categorieswithurls")
     public List<Map<String, String>> getCategorieswithUrls() {
-        return Category.getCategorieswithUrls();
+        return Category.getCategoriesWithUrls();
     }
 
     @GetMapping("/interactivebooks/category/{category}")
