@@ -38,8 +38,8 @@ public class BookWithPagesController {
         return Category.getCategoriesWithUrls();
     }
 
-    @GetMapping("/interactivebooks/category/{category}")
-    public List<BookWithPages> getBooksByCategory(@PathVariable Category category){
+    @GetMapping("/interactivebooks/booksbycategoryWithPages/{category}") // => niet nodig om alle pagina's mee te geven bij het ophalen van alle boeken
+    public List<BookWithPages> getBooksByCategoryWithPages(@PathVariable Category category){
         List<BookWithPages> returnList = new ArrayList<>();
 
 
