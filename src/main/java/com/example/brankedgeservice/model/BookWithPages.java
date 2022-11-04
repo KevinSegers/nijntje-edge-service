@@ -23,6 +23,7 @@ public class BookWithPages {
         setBookTitle(book.getTitle());
         setAuthor(book.getAuthor());
         setFavorite(book.isFavorite());
+        setAvailable(book.isAvailable());
         setCoverImageUrl(book.getCoverImageUrl());
         setBackCoverImageUrl(book.getBackCoverImageUrl());
         pagesFromBook = new ArrayList<>();
