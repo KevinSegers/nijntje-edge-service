@@ -34,18 +34,18 @@ public class BookWithPages {
 
     }
 
-    public BookWithPages(Book book, Page page) {
-        setBookTitle(book.getTitle());
-        setAuthor(book.getAuthor());
-        setFavorite(book.isFavorite());
-        setAvailable(book.isAvailable());
-        setCoverImageUrl(book.getCoverImageUrl());
-        setBackCoverImageUrl(book.getBackCoverImageUrl());
-        pagesFromBook = new ArrayList<>();
-        pagesFromBook.add(page);
-        setPagesFromBook(pagesFromBook);
-
-    }
+//    public BookWithPages(Book book, Page page) {
+//        setBookTitle(book.getTitle());
+//        setAuthor(book.getAuthor());
+//        setFavorite(book.isFavorite());
+//        setAvailable(book.isAvailable());
+//        setCoverImageUrl(book.getCoverImageUrl());
+//        setBackCoverImageUrl(book.getBackCoverImageUrl());
+//        pagesFromBook = new ArrayList<>();
+//        pagesFromBook.add(page);
+//        setPagesFromBook(pagesFromBook);
+//
+//    }
 
     public String getBookTitle() {
         return bookTitle;

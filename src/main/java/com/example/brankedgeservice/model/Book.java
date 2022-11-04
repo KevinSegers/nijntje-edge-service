@@ -8,15 +8,18 @@ public class Book {
 
     private String author;
 
+    private Category category;
+
     private boolean favorite;
 
     private boolean available;
 
-    private String coverImageUrl ;
+    private String coverImageUrl;
 
-    private String backCoverImageUrl ;
+    private String backCoverImageUrl;
 
-    public Book(){}
+    public Book() {
+    }
 
 
     public int getId() {
@@ -41,6 +44,14 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public boolean isFavorite() {
@@ -74,4 +85,5 @@ public class Book {
     public void setBackCoverImageUrl(String backCoverImageUrl) {
         this.backCoverImageUrl = backCoverImageUrl;
     }
+
 }

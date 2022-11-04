@@ -38,14 +38,14 @@ public class BookWithPagesController {
         return Category.getCategoriesWithUrls();
     }
 
-    @GetMapping("/interactivebooks/booksbycategoryWithPages/{category}") // => niet nodig om alle pagina's mee te geven bij het ophalen van alle boeken
+    @GetMapping("/interactivebooks/booksbycategorywithpages/{category}") // => niet nodig om alle pagina's mee te geven bij het ophalen van alle boeken
     public List<BookWithPages> getBooksByCategoryWithPages(@PathVariable Category category){
         List<BookWithPages> returnList = new ArrayList<>();
 
 
         ResponseEntity<List<Book>> responseEntityBooks =
                 restTemplate.exchange("http://" + bookServiceBaseUrl + "/books/category/" + category,
-                        HttpMethod.GET, null, new ParameterizedTypeReference<>() {
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Book>>() {
                         });
 
         List<Book> books = responseEntityBooks.getBody();
