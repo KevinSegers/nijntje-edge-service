@@ -8,8 +8,6 @@ public class Book {
 
     private String author;
 
-    private Category category;
-
     private boolean favorite;
 
     private boolean available;
@@ -44,14 +42,6 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public boolean isFavorite() {
