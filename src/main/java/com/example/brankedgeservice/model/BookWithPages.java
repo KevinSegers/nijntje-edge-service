@@ -27,26 +27,9 @@ public class BookWithPages {
         setCoverImageUrl(book.getCoverImageUrl());
         setBackCoverImageUrl(book.getBackCoverImageUrl());
         pagesFromBook = new ArrayList<>();
-//        pages.forEach(page ->{
-//            if (book.getTitle() == page.getBookTitle()) {
-//                pagesFromBook.add(page);
-//            }});
         setPagesFromBook(pages);
 
     }
-
-//    public BookWithPages(Book book, Page page) {
-//        setBookTitle(book.getTitle());
-//        setAuthor(book.getAuthor());
-//        setFavorite(book.isFavorite());
-//        setAvailable(book.isAvailable());
-//        setCoverImageUrl(book.getCoverImageUrl());
-//        setBackCoverImageUrl(book.getBackCoverImageUrl());
-//        pagesFromBook = new ArrayList<>();
-//        pagesFromBook.add(page);
-//        setPagesFromBook(pagesFromBook);
-//
-//    }
 
     public String getBookTitle() {
         return bookTitle;
