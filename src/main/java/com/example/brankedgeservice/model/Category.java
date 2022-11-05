@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Category {
-    NIJNTJE("Nijntje", "https://i.postimg.cc/3wpjLy5b/nijntje-cover.jpg"),
+    NIJNTJE("Nijntje", "https://i.postimg.cc/gkQmtdRD/nijntje-cover.jpg"),
     BUMBA("Bumba", "https://i.postimg.cc/DZr9Kysx/bumba-cover.jpg"),
     DRIBBEL("Dribbel", "https://i.postimg.cc/ydRvMQqB/dribbel-cover.jpg");
 
