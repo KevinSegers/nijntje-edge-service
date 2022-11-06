@@ -5,11 +5,10 @@ import com.example.brankedgeservice.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -27,17 +26,6 @@ public class BookWithPagesController {
     @Value("${bookservice.baseurl}")
     private String bookServiceBaseUrl;
 
-
-    //Nu niet meer nodig omdat ze nu samen in 1 endpoint zitten. Nog even laten staan voor referentie
-//    @GetMapping("/interactivebooks/categories")
-//    public List<String> getCategories() {
-//        return EnumSet.allOf(Category.class).stream().map(Category::getLabel).collect(Collectors.toList());
-//    }
-//    @GetMapping("/interactivebooks/categories/urls")
-//    public List<String> getCategoriesUrls() {
-//        return EnumSet.allOf(Category.class).stream().map(Category::getUrl).collect(Collectors.toList());
-//    }
-
     @GetMapping("/interactivebooks/categorieswithurls")
     public List<Map<String, String>> getCategorieswithUrls() {
         return Category.getCategoriesWithUrls();
@@ -45,9 +33,15 @@ public class BookWithPagesController {
 
     @GetMapping("/interactivebooks/booksbycategory/{category}")
     public List<Book> getBooksByCategory(@PathVariable String category) {
-        ResponseEntity<List<Book>> response = restTemplate.exchange("http://" + bookServiceBaseUrl + "/books/category/" + category, HttpMethod.GET, null, new ParameterizedTypeReference<List<Book>>() {
+        ResponseEntity<List<Book>> response = restTemplate.exchange("http://" + bookServiceBaseUrl + "/books/category/" + category, HttpMethod.GET, null, new ParameterizedTypeReference<>() {
         });
         return response.getBody();
+    }
+
+    @PutMapping("/interactivebooks/book")
+    public Book updateBook(@RequestBody Book book) {
+        ResponseEntity<Book> responseEntityBook = restTemplate.exchange("http://" + bookServiceBaseUrl + "/book", HttpMethod.PUT, new HttpEntity<>(book), Book.class);
+        return responseEntityBook.getBody();
     }
 
 //    @GetMapping("/interactivebooks/booksbycategorywithpages/{category}")
@@ -76,7 +70,7 @@ public class BookWithPagesController {
 //
 //    }
 
-//    @GetMapping("/interactivebooks/book/{bookTitle}/page/{pageNumber}") //bekijken!! sonarcloud geeft vulnerability aan
+//    @GetMapping("/interactivebooks/book/{bookTitle}/page/{pageNumber}") //bekijken!! sonarcloud geeft vulnerability aan, endpoint is niet echt nodig nu
 //    public Page getPageByBooktitleAndPagenumber(@PathVariable String bookTitle, @PathVariable int pageNumber) {
 //        return restTemplate.getForObject("http://" + pageServiceBaseUrl + "/pages/bookTitle/" + bookTitle + "/pageNumber/" + pageNumber, Page.class);
 //    }
