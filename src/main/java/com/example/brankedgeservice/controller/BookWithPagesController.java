@@ -45,7 +45,7 @@ public class BookWithPagesController {
 
     //update book
 
-    @PutMapping("/interactivebooks/book")
+    @PutMapping("/interactivebooks/updatebook")
     public Book updateBook(@RequestBody Book book) {
         ResponseEntity<Book> responseEntityBook = restTemplate.exchange("http://" + bookServiceBaseUrl + "/book", HttpMethod.PUT, new HttpEntity<>(book), Book.class);
         return responseEntityBook.getBody();
