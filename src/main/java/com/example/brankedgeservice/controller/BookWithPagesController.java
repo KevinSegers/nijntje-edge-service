@@ -2,6 +2,7 @@ package com.example.brankedgeservice.controller;
 
 import com.example.brankedgeservice.model.Book;
 import com.example.brankedgeservice.model.Category;
+import com.example.brankedgeservice.model.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -26,11 +27,15 @@ public class BookWithPagesController {
     @Value("${bookservice.baseurl}")
     private String bookServiceBaseUrl;
 
+    /*      ---- BOOK ----     */
+
+    //get categories with url
     @GetMapping("/interactivebooks/categorieswithurls")
     public List<Map<String, String>> getCategorieswithUrls() {
         return Category.getCategoriesWithUrls();
     }
 
+    //get books for category {category}
     @GetMapping("/interactivebooks/booksbycategory/{category}")
     public List<Book> getBooksByCategory(@PathVariable String category) {
         ResponseEntity<List<Book>> response = restTemplate.exchange("http://" + bookServiceBaseUrl + "/books/category/" + category, HttpMethod.GET, null, new ParameterizedTypeReference<List<Book>>() {
@@ -38,11 +43,70 @@ public class BookWithPagesController {
         return response.getBody();
     }
 
+    //update book
+
     @PutMapping("/interactivebooks/book")
     public Book updateBook(@RequestBody Book book) {
         ResponseEntity<Book> responseEntityBook = restTemplate.exchange("http://" + bookServiceBaseUrl + "/book", HttpMethod.PUT, new HttpEntity<>(book), Book.class);
         return responseEntityBook.getBody();
     }
+
+    /*      ---- PAGES ----     */
+
+    // get all pages
+    @GetMapping("/interactivebooks/pages")
+    public List<Page> getAllPages(){
+        ResponseEntity<List<Page>> responseEntityPages = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/", HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>(){} );
+        return responseEntityPages.getBody();
+    }
+
+
+    //get Page from booktitle and pagenumber
+    @GetMapping("/interactivebooks/pages/bookTitle/{bookTitle}/pageNumber/{pageNumber}")
+    public Page getPageByBookTitleAndPageNumber(@PathVariable String bookTitle, @PathVariable int pageNumber){
+        ResponseEntity<Page> responseEntityPage = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/bookTitle/"+bookTitle+"/pageNumber/"+pageNumber,
+                HttpMethod.GET,null, new ParameterizedTypeReference<Page>() {});
+        return responseEntityPage.getBody();
+    }
+
+    // add Page
+    @PostMapping("/interactivebooks/pages")
+    public Page addPage(@RequestParam int pageNumber, @RequestParam List<String> itemNames, @RequestParam String bookTitle ){
+        Page page = restTemplate.postForObject("http://"+pageServiceBaseUrl+"/pages", new Page(pageNumber, itemNames, false, bookTitle), Page.class);
+
+        return page;
+    }
+
+    //update page given page
+    @PutMapping("/interactivebooks/pages")
+    public Page updatePage(@RequestBody Page page) {
+        ResponseEntity<Page> responseEntityPage = restTemplate.exchange("http://" + pageServiceBaseUrl + "/pages", HttpMethod.PUT, new HttpEntity<>(page), Page.class);
+        return responseEntityPage.getBody();
+    }
+    //update page given booktitle and pagenumber
+    @PutMapping("/interactivebooks/pages/bookTitle/{bookTitle}/pageNumber/{pageNumber}")
+    public Page updatePageSeen(@PathVariable String bookTitle, @PathVariable int pageNumber){
+        Page page = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/bookTitle/"+bookTitle+"/pageNumber/"+pageNumber,
+                HttpMethod.GET,null, new ParameterizedTypeReference<Page>() {}).getBody();
+        page.setSeen(true);
+
+        ResponseEntity<Page> responseEntityPage = restTemplate.exchange("http://" + pageServiceBaseUrl + "/pages",
+                HttpMethod.PUT, new HttpEntity<>(page), Page.class);
+        return responseEntityPage.getBody();
+
+    }
+
+    //delete page given pageID
+
+    @DeleteMapping("/interactivebooks/pages/pageId")
+    public ResponseEntity deletePage(@PathVariable String id){
+        restTemplate.delete("http://" + pageServiceBaseUrl + "/page/"+id);
+        return ResponseEntity.ok().build();
+    }
+
+
+
+
 
 //    @GetMapping("/interactivebooks/booksbycategorywithpages/{category}")
 //    // => niet nodig om alle pagina's mee te geven bij het ophalen van alle boeken

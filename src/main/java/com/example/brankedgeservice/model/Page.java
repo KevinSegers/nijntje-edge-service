@@ -12,6 +12,12 @@ public class Page {
 
     public Page() {
     }
+    public Page( int pageNumber, List<String> itemNames,  Boolean seen, String bookTitle) {
+        this.pageNumber = pageNumber;
+        this.items = items;
+        this.seen = seen;
+        this.bookTitle = bookTitle;
+    }
 
     public String getId() {
         return id;
