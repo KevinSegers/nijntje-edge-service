@@ -37,7 +37,9 @@ public class BookWithPagesController {
 
     //get books for category {category}
     @GetMapping("/interactivebooks/booksbycategory/{category}")
+
     public List<Book> getBooksByCategory(@PathVariable String category) {
+        Category.valueOf(category);
         ResponseEntity<List<Book>> response = restTemplate.exchange("http://" + bookServiceBaseUrl + "/books/category/" + category, HttpMethod.GET, null, new ParameterizedTypeReference<List<Book>>() {
         });
         return response.getBody();
