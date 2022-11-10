@@ -88,6 +88,7 @@ public class BookWithPagesController {
     public Page updatePageSeen(@PathVariable String bookTitle, @PathVariable int pageNumber){
         Page page = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/bookTitle/"+bookTitle+"/pageNumber/"+pageNumber,
                 HttpMethod.GET,null, new ParameterizedTypeReference<Page>() {}).getBody();
+        assert page != null;
         page.setSeen(true);
 
         ResponseEntity<Page> responseEntityPage = restTemplate.exchange("http://" + pageServiceBaseUrl + "/pages",
