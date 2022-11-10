@@ -12,7 +12,7 @@ public class Page {
 
     public Page() {
     }
-    public Page( int pageNumber, List<String> itemNames,  Boolean seen, String bookTitle) {
+    public Page( int pageNumber, List<String> items,  Boolean seen, String bookTitle) {
         this.pageNumber = pageNumber;
         this.items = items;
         this.seen = seen;
