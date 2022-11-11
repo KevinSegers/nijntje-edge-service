@@ -49,8 +49,16 @@ public class BookWithPagesController {
 
     //get pages seen in decimal
     @GetMapping("/interactivebooks/books/{bookTitle}/pagesseen")
-    public  double getBooksPagesSeen(@PathVariable String bookTitle){
-    return 1.0;
+    public  int getBookPagesSeen(@PathVariable String bookTitle){
+        List<Page> pages = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/", HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>(){} ).getBody();
+        int totalSeen = 0;
+        int totalPages = pages.size();
+        for (Page page:pages) {
+            if(page.getSeen()){
+                totalSeen ++;
+            }
+        }
+        return 100*totalSeen/totalPages;
     }
 
     //update book
@@ -78,6 +86,8 @@ public class BookWithPagesController {
                 HttpMethod.GET,null, new ParameterizedTypeReference<Page>() {});
         return responseEntityPage.getBody();
     }
+
+
 
     // add Page
     @PostMapping("/interactivebooks/pages")
