@@ -86,7 +86,7 @@ public class BookWithPagesController {
 
 
     //get Page from booktitle and pagenumber
-    @GetMapping("/interactivebooks/pages/booktitle/{bookTitle}/pageNumber/{pageNumber}")
+    @GetMapping("/interactivebooks/pages/booktitle/{bookTitle}/pagenumber/{pageNumber}")
     public Page getPageByBookTitleAndPageNumber(@PathVariable String bookTitle, @PathVariable int pageNumber){
         ResponseEntity<Page> responseEntityPage = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/booktitle/"+bookTitle+"/pageNumber/"+pageNumber,
                 HttpMethod.GET,null, new ParameterizedTypeReference<Page>() {});
@@ -110,7 +110,7 @@ public class BookWithPagesController {
         return responseEntityPage.getBody();
     }
     //update page given booktitle and pagenumber
-    @PutMapping("/interactivebooks/pages/booktitle/{bookTitle}/pageNumber/{pageNumber}")
+    @PutMapping("/interactivebooks/pages/booktitle/{bookTitle}/pagenumber/{pageNumber}")
     public Page updatePageSeen(@PathVariable String bookTitle, @PathVariable int pageNumber){
         Page page = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/booktitle/"+bookTitle+"/pageNumber/"+pageNumber,
                 HttpMethod.GET,null, new ParameterizedTypeReference<Page>() {}).getBody();
