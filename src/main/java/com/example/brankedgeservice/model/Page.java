@@ -43,7 +43,7 @@ public class Page {
         this.items = items;
     }
 
-    public Boolean getSeen() {
+    public Boolean isSeen() {
         return seen;
     }
 

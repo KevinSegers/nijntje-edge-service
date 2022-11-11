@@ -49,17 +49,10 @@ public class BookWithPagesController {
 
     //get pages seen in decimal
     @GetMapping("/interactivebooks/books/{bookTitle}/pagesseen")
-    public  int getBookPagesSeen(@PathVariable String bookTitle){
-        List<Page> pages = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/booktitle/" + bookTitle, HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>(){} ).getBody();
-        int totalSeen = 0;
-        assert pages != null;
-        int totalPages = pages.size();
-        for (Page page:pages) {
-            if(page.getSeen()){
-                totalSeen ++;
-            }
-        }
-        return 100*totalSeen/totalPages;
+    public  double getBookPagesSeen(@PathVariable String bookTitle){
+        ResponseEntity<Double> responseEntity =  restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/booktitle/"+bookTitle+"/pagesunseen", HttpMethod.GET, null, new ParameterizedTypeReference<Double>() {});
+        return responseEntity.getBody();
+
     }
     @PutMapping("/interactivebooks/books/{bookTitle}/setpagesunseen")
     public void setBookPagesUnseen(@PathVariable String bookTitle){
@@ -91,6 +84,12 @@ public class BookWithPagesController {
         ResponseEntity<Page> responseEntityPage = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/booktitle/"+bookTitle+"/pageNumber/"+pageNumber,
                 HttpMethod.GET,null, new ParameterizedTypeReference<Page>() {});
         return responseEntityPage.getBody();
+    }
+
+    @GetMapping("/interactivebooks/booktitle/{bookTitle}/pagenumber/{pagenumber}/items")
+    public List<String> getItemsFromPage(@PathVariable String bookTitle, @PathVariable int pagenumber){
+        return restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/booktitle/"+bookTitle+"/pagenumber/"+pagenumber+"/items",
+                HttpMethod.GET,null, new ParameterizedTypeReference<List<String>>() {}).getBody();
     }
 
 
