@@ -50,8 +50,9 @@ public class BookWithPagesController {
     //get pages seen in decimal
     @GetMapping("/interactivebooks/books/{bookTitle}/pagesseen")
     public  int getBookPagesSeen(@PathVariable String bookTitle){
-        List<Page> pages = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/", HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>(){} ).getBody();
+        List<Page> pages = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/booktitle/" + bookTitle, HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>(){} ).getBody();
         int totalSeen = 0;
+        assert pages != null;
         int totalPages = pages.size();
         for (Page page:pages) {
             if(page.getSeen()){
@@ -59,6 +60,11 @@ public class BookWithPagesController {
             }
         }
         return 100*totalSeen/totalPages;
+    }
+    @PutMapping("/interactivebooks/books/{bookTitle}/setpagesunseen")
+    public void setBookPagesUnseen(@PathVariable String bookTitle){
+        restTemplate.put("http://"+pageServiceBaseUrl+"/pages/booktitle/" + bookTitle + "/setpagesunseen/", null);
+
     }
 
     //update book
@@ -80,9 +86,9 @@ public class BookWithPagesController {
 
 
     //get Page from booktitle and pagenumber
-    @GetMapping("/interactivebooks/pages/bookTitle/{bookTitle}/pageNumber/{pageNumber}")
+    @GetMapping("/interactivebooks/pages/booktitle/{bookTitle}/pageNumber/{pageNumber}")
     public Page getPageByBookTitleAndPageNumber(@PathVariable String bookTitle, @PathVariable int pageNumber){
-        ResponseEntity<Page> responseEntityPage = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/bookTitle/"+bookTitle+"/pageNumber/"+pageNumber,
+        ResponseEntity<Page> responseEntityPage = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/booktitle/"+bookTitle+"/pageNumber/"+pageNumber,
                 HttpMethod.GET,null, new ParameterizedTypeReference<Page>() {});
         return responseEntityPage.getBody();
     }
@@ -104,9 +110,9 @@ public class BookWithPagesController {
         return responseEntityPage.getBody();
     }
     //update page given booktitle and pagenumber
-    @PutMapping("/interactivebooks/pages/bookTitle/{bookTitle}/pageNumber/{pageNumber}")
+    @PutMapping("/interactivebooks/pages/booktitle/{bookTitle}/pageNumber/{pageNumber}")
     public Page updatePageSeen(@PathVariable String bookTitle, @PathVariable int pageNumber){
-        Page page = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/bookTitle/"+bookTitle+"/pageNumber/"+pageNumber,
+        Page page = restTemplate.exchange("http://"+pageServiceBaseUrl+"/pages/booktitle/"+bookTitle+"/pageNumber/"+pageNumber,
                 HttpMethod.GET,null, new ParameterizedTypeReference<Page>() {}).getBody();
         assert page != null;
         page.setSeen(true);
@@ -151,7 +157,7 @@ public class BookWithPagesController {
 //        assert books != null;
 //        for (Book book : books) {
 //            String bookTitle = book.getTitle();
-//            List<Page> pages = restTemplate.exchange("http://" + pageServiceBaseUrl + "/pages/bookTitle/" + bookTitle, HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>() {
+//            List<Page> pages = restTemplate.exchange("http://" + pageServiceBaseUrl + "/pages/booktitle/" + bookTitle, HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>() {
 //            }).getBody();
 //
 //            returnList.add(new BookWithPages(book, pages));
