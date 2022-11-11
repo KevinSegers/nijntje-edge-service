@@ -1,6 +1,7 @@
 package com.example.brankedgeservice.controller;
 
 import com.example.brankedgeservice.model.Book;
+import com.example.brankedgeservice.model.BookWithPages;
 import com.example.brankedgeservice.model.Category;
 import com.example.brankedgeservice.model.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +46,18 @@ public class BookWithPagesController {
         return response.getBody();
     }
 
+
+    //get pages seen in decimal
+    @GetMapping("/interactivebooks/books/{bookTitle}/pagesseen")
+    public  double getBooksPagesSeen(@PathVariable String bookTitle){
+    return 1.0;
+    }
+
     //update book
 
     @PutMapping("/interactivebooks/updatebook")
     public Book updateBook(@RequestBody Book book) {
-        ResponseEntity<Book> responseEntityBook = restTemplate.exchange("http://" + bookServiceBaseUrl + "/book", HttpMethod.PUT, new HttpEntity<>(book), Book.class);
+        ResponseEntity<Book> responseEntityBook = restTemplate.exchange("http://" + bookServiceBaseUrl + "/books", HttpMethod.PUT, new HttpEntity<>(book), Book.class);
         return responseEntityBook.getBody();
     }
 
@@ -109,6 +117,13 @@ public class BookWithPagesController {
 
 
 
+    /* --- BooksWtihPages  --- */
+    //public BookWithPages getBookWithPages
+
+
+
+
+
 
 
 //    @GetMapping("/interactivebooks/booksbycategorywithpages/{category}")
@@ -137,10 +152,7 @@ public class BookWithPagesController {
 //
 //    }
 
-//    @GetMapping("/interactivebooks/book/{bookTitle}/page/{pageNumber}") //bekijken!! sonarcloud geeft vulnerability aan, endpoint is niet echt nodig nu
-//    public Page getPageByBooktitleAndPagenumber(@PathVariable String bookTitle, @PathVariable int pageNumber) {
-//        return restTemplate.getForObject("http://" + pageServiceBaseUrl + "/pages/bookTitle/" + bookTitle + "/pageNumber/" + pageNumber, Page.class);
-//    }
+
 
 
 }
