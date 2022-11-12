@@ -142,41 +142,13 @@ public class BookWithPagesController {
 
     //delete page given pageID
 
-    @DeleteMapping("/interactivebooks/pages/pageId")
-    public ResponseEntity deletePage(@PathVariable String id){
-        restTemplate.delete("http://" + pageServiceBaseUrl + "/page/"+id);
+    @DeleteMapping("/interactivebooks/booktitle/{bookTitle}/pagenumber/{pageNumber}")
+    public ResponseEntity deletePage(@PathVariable String bookTitle, @PathVariable int pageNumber){
+        restTemplate.delete("http://" + pageServiceBaseUrl + "/pages/booktitle/"+bookTitle+"/pagenumber/"+pageNumber);
         return ResponseEntity.ok().build();
     }
 
 
-
-
-
-//    @GetMapping("/interactivebooks/booksbycategorywithpages/{category}")
-//    // => niet nodig om alle pagina's mee te geven bij het ophalen van alle boeken
-//    public List<BookWithPages> getBooksByCategoryWithPages(@PathVariable Category category) {
-//        List<BookWithPages> returnList = new ArrayList<>();
-//
-//
-//        ResponseEntity<List<Book>> responseEntityBooks = restTemplate.exchange("http://" + bookServiceBaseUrl + "/books/category/" + category, HttpMethod.GET, null, new ParameterizedTypeReference<List<Book>>() {
-//        });
-//
-//        List<Book> books = responseEntityBooks.getBody();
-//
-//
-//        assert books != null;
-//        for (Book book : books) {
-//            String bookTitle = book.getTitle();
-//            List<Page> pages = restTemplate.exchange("http://" + pageServiceBaseUrl + "/pages/booktitle/" + bookTitle, HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>() {
-//            }).getBody();
-//
-//            returnList.add(new BookWithPages(book, pages));
-//
-//        }
-//
-//        return returnList;
-//
-//    }
 
 
 
