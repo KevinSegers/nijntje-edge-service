@@ -57,8 +57,9 @@ public class BookWithPagesController {
 
     // set pages from book unseen
     @PutMapping("/interactivebooks/books/{bookTitle}/setpagesunseen")
-    public void setBookPagesUnseen(@PathVariable String bookTitle) {
+    public ResponseEntity setBookPagesUnseen(@PathVariable String bookTitle) {
         restTemplate.put("http://" + pageServiceBaseUrl + "/pages/booktitle/" + bookTitle + "/setpagesunseen/", null);
+        return ResponseEntity.ok().build();
     }
 
     //get Page from booktitle and pagenumber
@@ -157,7 +158,7 @@ public class BookWithPagesController {
 
     //delete page given pageID
 
-    @DeleteMapping("/interactivebooks/pages/pageId")
+    @DeleteMapping("/interactivebooks/pages/{id}")
     public ResponseEntity deletePage(@PathVariable String id) {
         restTemplate.delete("http://" + pageServiceBaseUrl + "/page/" + id);
         return ResponseEntity.ok().build();
