@@ -2,12 +2,14 @@ package com.example.brankedgeservice.model;
 
 public class Book {
 
+
     private int id;
 
     private String title;
 
     private String author;
 
+    private  Category category;
     private boolean favorite;
 
     private boolean available;
@@ -16,6 +18,17 @@ public class Book {
 
     private String backCoverImageUrl;
 
+    public Book(){}
+
+    public Book( String title, String author, Category category, boolean favorite, boolean available, String coverImageUrl, String backCoverImageUrl) {
+        this.title = title;
+        this.author = author;
+        this.category = category;
+        this.favorite = favorite;
+        this.available = available;
+        this.coverImageUrl = coverImageUrl;
+        this.backCoverImageUrl = backCoverImageUrl;
+    }
 
     public int getId() {
         return id;
@@ -39,6 +52,14 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public boolean isFavorite() {

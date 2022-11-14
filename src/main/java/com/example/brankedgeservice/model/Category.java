@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
+// This should be an entity class!!!!!!!!!
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Category {
     NIJNTJE("Nijntje", "https://i.postimg.cc/gkQmtdRD/nijntje-cover.jpg"),
