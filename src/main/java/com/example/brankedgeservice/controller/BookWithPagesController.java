@@ -57,10 +57,10 @@ public class BookWithPagesController {
 
     // set pages from book unseen
     @PutMapping("/interactivebooks/books/{bookTitle}/setpagesunseen")
-    public Page setBookPagesUnseen(@PathVariable String bookTitle) {
-        ResponseEntity<Page> responseEntityPage = restTemplate.exchange("http://" + pageServiceBaseUrl + "/pages/booktitle/" + bookTitle + "/setpagesunseen/",
+    public ResponseEntity setBookPagesUnseen(@PathVariable String bookTitle) {
+        restTemplate.exchange("http://" + pageServiceBaseUrl + "/pages/booktitle/" + bookTitle + "/setpagesunseen/",
                 HttpMethod.PUT, new HttpEntity<>(bookTitle),Page.class);
-        return responseEntityPage.getBody();
+        return ResponseEntity.ok().build();
     }
 
     //get Page from booktitle and pagenumber
