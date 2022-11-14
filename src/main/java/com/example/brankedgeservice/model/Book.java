@@ -16,9 +16,6 @@ public class Book {
 
     private String backCoverImageUrl;
 
-    public Book() {
-    }
-
 
     public int getId() {
         return id;
