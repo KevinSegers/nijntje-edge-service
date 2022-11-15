@@ -216,9 +216,7 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void whenGetBookPagesSeenWithNoPagesSeen_thenReturnZeroSON() throws Exception {
-
-        double pagesSeen = 0.50;
+    void whenGetBookPagesSeenButNoPages_thenReturnZero() throws Exception {
 
         mockServer.expect(ExpectedCount.once(), requestTo(new URI("http://" + pageServiceBaseUrl + "/pages/booktitle/Nijntje/pagesseen")))
                 .andExpect(method(HttpMethod.GET))
