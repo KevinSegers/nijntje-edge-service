@@ -91,7 +91,7 @@ public class BookWithPagesController {
 
     }
 
-    //update page given booktitle and pagenumber
+    //update page to seen given booktitle and pagenumber
     @PutMapping("/interactivebooks/pages/booktitle/{bookTitle}/pagenumber/{pageNumber}")
     public Page updatePageSeen(@PathVariable String bookTitle, @PathVariable int pageNumber) {
 
@@ -112,7 +112,7 @@ public class BookWithPagesController {
 
 
     //get Book with pages
-    @GetMapping("/interactivebooks/booktitle/{bookTitle}")
+    @GetMapping("/interactivebooks/book/{bookTitle}")
     public BookWithPages getBookWithPages(@PathVariable String bookTitle) {
         Book book = restTemplate.exchange("http://" + bookServiceBaseUrl + "/books/title/" + bookTitle, HttpMethod.GET, null, new ParameterizedTypeReference<Book>() {
         }).getBody();
@@ -147,15 +147,18 @@ public class BookWithPagesController {
     public BookWithPages addPage(@RequestParam int pageNumber, @RequestParam List<String> items, @RequestParam String bookTitle) {
         restTemplate.postForObject("http://" + pageServiceBaseUrl + "/pages", new Page(pageNumber, items, false, bookTitle), Page.class);
 
-        BookWithPages book = getBookWithPages(bookTitle);
+        Book book = restTemplate.exchange("http://" + bookServiceBaseUrl + "/books/title/" + bookTitle, HttpMethod.GET, null, new ParameterizedTypeReference<Book>() {
+        }).getBody();
+
+        List<Page> pages = restTemplate.exchange("http://" + pageServiceBaseUrl + "/pages/booktitle/" + bookTitle, HttpMethod.GET, null, new ParameterizedTypeReference<List<Page>>() {
+        }).getBody();
 
         assert book != null;
-        return book;
+        return new BookWithPages(book, pages);
     }
 
 
-    //delete page given pageID
-
+    //delete page
     @DeleteMapping("/interactivebooks/pages/booktitle/{bookTitle}/pagenumber/{pageNumber}")
     public ResponseEntity deletePage(@PathVariable String bookTitle, @PathVariable int pageNumber) {
         restTemplate.delete("http://" + pageServiceBaseUrl + "/pages/booktitle/" + bookTitle +"/pagenumber/" + pageNumber);
