@@ -77,7 +77,7 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void getCategorieswithUrlsReturnsCategoriesWthUrls() throws Exception {
+    void whengetCategorieswithUrls_ReturnsCategoriesWthUrlsJSON() throws Exception {
 
         mockMvc.perform(get("/interactivebooks/categorieswithurls"))
                 .andExpect(jsonPath("$[0].label").value("Nijntje"))
@@ -144,7 +144,7 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void WhensetBookPagesUnseen_thenreturnPages() throws Exception {
+    void whenSetBookPagesUnseen_thenreturnPages() throws Exception {
 
         Page pageOneNijntjeInDeSpeeltuinUpdated = new Page(1, itemsPageOne, false, "Nijntje in de speeltuin");
         List<Page> pages = new ArrayList<>(Arrays.asList(pageOneNijntjeInDeSpeeltuinUpdated, pageTwoNijntjeInDeSpeeltuin));
@@ -163,7 +163,7 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void getPageByBookTitleAndPageNumber1() throws Exception {
+    void whenGetPageByBookTitleAndPageNumberOne_thenReturnPageJSON() throws Exception {
 
         mockServer.expect(ExpectedCount.once(), requestTo(new URI("http://" + pageServiceBaseUrl + "/pages/booktitle/Nijntje%20in%20de%20speeltuin/pagenumber/1")))
                 .andExpect(method(HttpMethod.GET))
@@ -181,7 +181,7 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void getItemsFromPage() throws Exception {
+    void whenGetItemsFromPageOne_thenReturnItemsPageOneJSON() throws Exception {
 
         mockServer.expect(ExpectedCount.once(), requestTo(new URI("http://" + pageServiceBaseUrl + "/pages/booktitle/Nijntje%20in%20de%20speeltuin/pagenumber/1/items")))
                 .andExpect(method(HttpMethod.GET))
@@ -216,7 +216,26 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void updatePageSeen() throws Exception {
+    void whenGetBookPagesSeenWithNoPagesSeen_thenReturnZeroSON() throws Exception {
+
+        double pagesSeen = 0.50;
+
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI("http://" + pageServiceBaseUrl + "/pages/booktitle/Nijntje/pagesseen")))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(null)));
+
+
+        mockMvc.perform(get("/interactivebooks/books/{bookTitle}/pagesseen", "Nijntje")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", is(0.0)));
+    }
+
+
+
+    @Test
+    void whenUpdatePageSeen_returnUpdatePageJSON() throws Exception {
 
         Page pageTwoNijntjeInDeSpeeltuinUpdated = new Page(2, itemsPageTwo, true, "Nijntje in de speeltuin");
 
@@ -241,7 +260,7 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void getBookWithPages() throws Exception {
+    void whenGetBookWithPages_thenReturnBookWithPagesJSON() throws Exception {
 
         mockServer.expect(ExpectedCount.once(), requestTo(new URI("http://" + bookServiceBaseUrl + "/books/title/Nijntje%20in%20de%20speeltuin")))
                 .andExpect(method(HttpMethod.GET))
@@ -275,7 +294,7 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void updatePage() throws Exception {
+    void whenUpdatePage_thenReturnBookWithUpdatedPageJSON() throws Exception {
 
         Page pageTwoNijntjeInDeSpeeltuinUpdated = new Page(2, itemsPageTwo, true, "Nijntje in de speeltuin");
         List<Page> pages = new ArrayList<>(Arrays.asList(pageOneNijntjeInDeSpeeltuin, pageTwoNijntjeInDeSpeeltuinUpdated));
@@ -308,7 +327,7 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void addPage() throws Exception {
+    void whenAddPage_thenReturnBookWithPagesJSON() throws Exception {
         List<String> itemsPageThree = new ArrayList<>(Arrays.asList("nijntje", "mamaNijntje"));
         Page pageThreeNijntjeInDeSpeeltuin = new Page(3, itemsPageThree, false, "Nijntje in de speeltuin");
         List<Page> pages = new ArrayList<>(Arrays.asList(pageOneNijntjeInDeSpeeltuin, pageTwoNijntjeInDeSpeeltuin, pageThreeNijntjeInDeSpeeltuin));
@@ -344,7 +363,7 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void deletePageAndGetStatusOK() throws Exception {
+    void whendeletePage_thenReturnStatusOKJSON() throws Exception {
         mockServer.expect(ExpectedCount.once(),
                         requestTo(new URI("http://" + pageServiceBaseUrl + "/pages/booktitle/Nijntje%20in%20de%20speeltuin/pagenumber/1")))
                 .andExpect(method(HttpMethod.DELETE))
