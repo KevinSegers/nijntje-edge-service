@@ -19,7 +19,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.example.brankedgeservice.model.Category.NIJNTJE;
 import static org.hamcrest.Matchers.hasSize;
@@ -61,6 +63,8 @@ class BookWithPagesControllerUnitTests {
 
     Page pageOneNijntjeInDeSpeeltuin = new Page(1, itemsPageOne, true, "Nijntje in de speeltuin");
     Page pageTwoNijntjeInDeSpeeltuin = new Page(2, itemsPageTwo, false, "Nijntje in de speeltuin");
+
+    private final double pagesSeen = 0.50;
 
 
     List<Page> pages = new ArrayList<>(Arrays.asList(pageOneNijntjeInDeSpeeltuin, pageTwoNijntjeInDeSpeeltuin));
@@ -198,13 +202,14 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void getBookPagesSeen() throws Exception {
+    void whenGetBookPagesSeen_thenReturnDoubleJSON() throws Exception {
 
         double percentageSeen = 0.50;
-        
+
         mockServer.expect(ExpectedCount.once(), requestTo(new URI("http://" + pageServiceBaseUrl + "/pages/booktitle/Nijntje%20in%20de%20speeltuin/pagesseen")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(pagesSeen)));
                         .contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(percentageSeen)));
 
         mockMvc.perform(get("/interactivebooks/books/{bookTitle}/pagesseen", "Nijntje in de speeltuin")
