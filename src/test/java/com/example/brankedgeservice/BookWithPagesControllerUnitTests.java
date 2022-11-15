@@ -19,9 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static com.example.brankedgeservice.model.Category.NIJNTJE;
 import static org.hamcrest.Matchers.hasSize;
@@ -78,10 +76,15 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void getCategorieswithUrlsReturnsCategoriesWthUrls() {
-        //TODO implement test => Niet zo simpel omdat Categroy een ENUM is.... Desnoods test open laten...
+    void getCategorieswithUrlsReturnsCategoriesWthUrls() throws Exception {
 
-
+        mockMvc.perform(get("/interactivebooks/categorieswithurls"))
+                .andExpect(jsonPath("$[0].label").value("Nijntje"))
+                .andExpect(jsonPath("$[0].url").value("https://i.postimg.cc/gkQmtdRD/nijntje-cover.jpg"))
+                .andExpect(jsonPath("$[1].label").value("Bumba"))
+                .andExpect(jsonPath("$[1].url").value("https://i.postimg.cc/DZr9Kysx/bumba-cover.jpg"))
+                .andExpect(jsonPath("$[2].label").value("Dribbel"))
+                .andExpect(jsonPath("$[2].url").value("https://i.postimg.cc/ydRvMQqB/dribbel-cover.jpg"));
     }
 
     @Test
@@ -197,10 +200,12 @@ class BookWithPagesControllerUnitTests {
     @Test
     void getBookPagesSeen() throws Exception {
 
+        double percentageSeen = 0.50;
+        
         mockServer.expect(ExpectedCount.once(), requestTo(new URI("http://" + pageServiceBaseUrl + "/pages/booktitle/Nijntje%20in%20de%20speeltuin/pagesseen")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
-                        .contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(pages)));
+                        .contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(percentageSeen)));
 
         mockMvc.perform(get("/interactivebooks/books/{bookTitle}/pagesseen", "Nijntje in de speeltuin")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -305,7 +310,6 @@ class BookWithPagesControllerUnitTests {
         List<String> itemsPageThree = new ArrayList<>(Arrays.asList("nijntje", "mamaNijntje"));
         Page pageThreeNijntjeInDeSpeeltuin = new Page(3, itemsPageThree, false, "Nijntje in de speeltuin");
         List<Page> pages = new ArrayList<>(Arrays.asList(pageOneNijntjeInDeSpeeltuin, pageTwoNijntjeInDeSpeeltuin, pageThreeNijntjeInDeSpeeltuin));
-        BookWithPages NijntjeInDeSpeeltuin = new BookWithPages(bookNijntjeInDeSpeeltuin, pages);
 
         mockServer.expect(ExpectedCount.once(), requestTo(new URI("http://" + pageServiceBaseUrl + "/pages")))
                 .andExpect(method(HttpMethod.POST))
