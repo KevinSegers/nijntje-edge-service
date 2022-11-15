@@ -1,9 +1,6 @@
 package com.example.brankedgeservice.controller;
 
-import com.example.brankedgeservice.model.Book;
-import com.example.brankedgeservice.model.BookWithPages;
-import com.example.brankedgeservice.model.Category;
-import com.example.brankedgeservice.model.Page;
+import com.example.brankedgeservice.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -33,7 +30,7 @@ public class BookWithPagesController {
     //get categories with url
     @GetMapping("/interactivebooks/categorieswithurls")
     public List<Map<String, String>> getCategorieswithUrls() {
-        return Category.getCategoriesWithUrls();
+        return CategoryWithUrl.getCategoriesWithUrls();
     }
 
     //get books for category
