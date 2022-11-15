@@ -1,6 +1,5 @@
 package com.example.brankedgeservice;
 
-import com.example.brankedgeservice.controller.BookWithPagesController;
 import com.example.brankedgeservice.model.Book;
 import com.example.brankedgeservice.model.BookWithPages;
 import com.example.brankedgeservice.model.Page;
@@ -80,7 +79,9 @@ class BookWithPagesControllerUnitTests {
 
     @Test
     void getCategorieswithUrlsReturnsCategoriesWthUrls() {
-        //TODO implement test => Niet zo simpel omdat Categroy een ENUM is.... Desnoods test open laten... Alles omzetten is veel werk....
+        //TODO implement test => Niet zo simpel omdat Categroy een ENUM is.... Desnoods test open laten...
+
+
     }
 
     @Test
@@ -274,7 +275,6 @@ class BookWithPagesControllerUnitTests {
         BookWithPages bookUpdated = new BookWithPages(bookNijntjeInDeSpeeltuin, pages);
 
 
-
         mockServer.expect(ExpectedCount.once(), requestTo(new URI("http://" + bookServiceBaseUrl + "/books/title/Nijntje%20in%20de%20speeltuin")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
@@ -302,7 +302,7 @@ class BookWithPagesControllerUnitTests {
 
     @Test
     void addPage() throws Exception {
-        List<String> itemsPageThree = new ArrayList<>(Arrays.asList("nijntje"));
+        List<String> itemsPageThree = new ArrayList<>(Arrays.asList("nijntje", "mamaNijntje"));
         Page pageThreeNijntjeInDeSpeeltuin = new Page(3, itemsPageThree, false, "Nijntje in de speeltuin");
         List<Page> pages = new ArrayList<>(Arrays.asList(pageOneNijntjeInDeSpeeltuin, pageTwoNijntjeInDeSpeeltuin, pageThreeNijntjeInDeSpeeltuin));
         BookWithPages NijntjeInDeSpeeltuin = new BookWithPages(bookNijntjeInDeSpeeltuin, pages);
@@ -323,10 +323,17 @@ class BookWithPagesControllerUnitTests {
                         .contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(pages)));
 
         mockMvc.perform(post("/interactivebooks/pages")
-                        .content(mapper.writeValueAsString(NijntjeInDeSpeeltuin))
+                        .param("pageNumber", String.valueOf(pageThreeNijntjeInDeSpeeltuin.getPageNumber()))
+                        .param("items", String.valueOf(pageThreeNijntjeInDeSpeeltuin.getItems()))
+                        .param("seen", String.valueOf(pageThreeNijntjeInDeSpeeltuin.isSeen()))
+                        .param("bookTitle", pageThreeNijntjeInDeSpeeltuin.getBookTitle())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.pagesFromBook", hasSize(3)));
+                .andExpect(jsonPath("$.pagesFromBook", hasSize(3)))
+                .andExpect(jsonPath("$.pagesFromBook[2].pageNumber", is(3)))
+                .andExpect(jsonPath("$.pagesFromBook[2].items", hasSize(2)))
+                .andExpect(jsonPath("$.pagesFromBook[2].seen", is(false)))
+                .andExpect(jsonPath("$.pagesFromBook[2].bookTitle", is("Nijntje in de speeltuin")));
 
     }
 
