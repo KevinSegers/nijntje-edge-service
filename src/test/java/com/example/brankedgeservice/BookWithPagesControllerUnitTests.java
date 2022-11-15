@@ -64,6 +64,8 @@ class BookWithPagesControllerUnitTests {
     Page pageOneNijntjeInDeSpeeltuin = new Page(1, itemsPageOne, true, "Nijntje in de speeltuin");
     Page pageTwoNijntjeInDeSpeeltuin = new Page(2, itemsPageTwo, false, "Nijntje in de speeltuin");
 
+    private final double pagesSeen = 0.50;
+
 
     List<Page> pages = new ArrayList<>(Arrays.asList(pageOneNijntjeInDeSpeeltuin, pageTwoNijntjeInDeSpeeltuin));
 
@@ -195,12 +197,12 @@ class BookWithPagesControllerUnitTests {
     }
 
     @Test
-    void getBookPagesSeen() throws Exception {
+    void whenGetBookPagesSeen_thenReturnDoubleJSON() throws Exception {
 
         mockServer.expect(ExpectedCount.once(), requestTo(new URI("http://" + pageServiceBaseUrl + "/pages/booktitle/Nijntje%20in%20de%20speeltuin/pagesseen")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
-                        .contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(pages)));
+                        .contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(pagesSeen)));
 
         mockMvc.perform(get("/interactivebooks/books/{bookTitle}/pagesseen", "Nijntje in de speeltuin")
                         .contentType(MediaType.APPLICATION_JSON))
