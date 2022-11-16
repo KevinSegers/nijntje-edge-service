@@ -127,52 +127,58 @@ Get Book with pages
   <sub>postman</sub>
   &nbsp;  
 ![](readmeImages/EdgeService/Postman/GetBookWithPages.png)
-  <sub>swagger</sub> &nbsp;
+  <sub>swagger</sub>  
+  &nbsp;
   ![](readmeImages/EdgeService/Swagger/GetBookWithPages.png)
   &nbsp;  
   &nbsp;
 + `GET /interactivebooks/books/{bookTitle}/pagesseen`  
   Get pages seen in decimal  
   <sub>postman</sub>
-  ![](readmeImages/EdgeService/Postman/GetBookPagesSeen.png)  
+  ![](readmeImages/EdgeService/Postman/GetBookPagesSeen.png)   
   &nbsp;    
-  <sub>swagger</sub> &nbsp;
-  ![](readmeImages/EdgeService/Swagger/GetBookPagesSeen.png)  
+  <sub>swagger</sub>  
+  &nbsp;
+  ![](readmeImages/EdgeService/Swagger/GetBookPagesSeen.png)    
   &nbsp;   
   &nbsp;
 + `GET /interactivebooks/booksbycategory/{category}`  
   Get books for category  
   <sub>postman</sub>
-  ![](readmeImages/EdgeService/Postman/GetBooksByCategory.png)  
+  ![](readmeImages/EdgeService/Postman/GetBooksByCategory.png)    
   &nbsp;  
-  <sub>swagger</sub> &nbsp;
+  <sub>swagger</sub>  
+  &nbsp;
   ![](readmeImages/EdgeService/Swagger/GetBooksByCategory.png)   
   &nbsp;    
   &nbsp;
 + `GET /interactivebooks/booktitle/{bookTitle}/pagenumber/{pageNumber}/items`  
   Get items from page  
   <sub>postman</sub>
-  ![](readmeImages/EdgeService/Postman/GetItemsFromPage.png)  
+  ![](readmeImages/EdgeService/Postman/GetItemsFromPage.png)   
   &nbsp;    
-  <sub>swagger</sub> &nbsp;
+  <sub>swagger</sub>  
+  &nbsp;
   ![](readmeImages/EdgeService/Swagger/GetItemsFromPage.png)
   &nbsp;    
   &nbsp;
 + `GET /interactivebooks/categorieswithurls`  
   Get categories with url  
   <sub>postman</sub>
-  ![](readmeImages/EdgeService/Postman/GetCategorieswithUrls.png)
+  ![](readmeImages/EdgeService/Postman/GetCategorieswithUrls.png)  
   &nbsp;  
-  <sub>swagger</sub> &nbsp;
+  <sub>swagger</sub>  
+  &nbsp;  
   ![](readmeImages/EdgeService/Swagger/GetCategorieswithurls.png)
   &nbsp;    
   &nbsp;
 + `GET /interactivebooks/pages/booktitle/{bookTitle}/pagenumber/{pageNumber}`  
   Get page by booktitle and pagenumber  
   <sub>postman</sub>  
-  ![](readmeImages/EdgeService/Postman/GetPageByBookTitleAndPageNumber.png)
+  ![](readmeImages/EdgeService/Postman/GetPageByBookTitleAndPageNumber.png)  
   &nbsp;    
-  <sub>swagger</sub> &nbsp;  
+  <sub>swagger</sub>  
+  &nbsp;  
 ![](readmeImages/EdgeService/Swagger/GetPageByBookTitleAndPageNumber.png)
   &nbsp;    
   &nbsp;
@@ -181,7 +187,8 @@ Get Book with pages
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/AddPage.png)  
   &nbsp;  
-  <sub>swagger</sub> &nbsp;  
+  <sub>swagger</sub>  
+  &nbsp;   
 ![](readmeImages/EdgeService/Swagger/AddPage.png)
   &nbsp;    
   &nbsp;
@@ -190,7 +197,8 @@ Get Book with pages
   <sub>postman</sub>  
   ![](readmeImages/EdgeService/Postman/GetBookPagesUnseen.png)  
   &nbsp;   
-  <sub>swagger</sub> &nbsp;
+  <sub>swagger</sub>  
+  &nbsp;  
 ![](readmeImages/EdgeService/Swagger/SetBookPagesUnseen.png)  
   &nbsp;      
   &nbsp;
@@ -199,7 +207,8 @@ Get Book with pages
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/UpdatePage.png)  
   &nbsp;  
-  <sub>swagger</sub> &nbsp;
+  <sub>swagger</sub> 
+  &nbsp;  
 ![](readmeImages/EdgeService/Swagger/UpdatePage.png)
   &nbsp;    
   &nbsp;
@@ -207,17 +216,19 @@ Get Book with pages
   Update page to seen given booktitle and pagenumber  
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/UpdatePageSeen.png)
+  &nbsp;    
+  <sub>swagger</sub>    
   &nbsp;  
-  <sub>swagger</sub> &nbsp;
   ![](readmeImages/EdgeService/Swagger/UpdatePageSeen.png)
   &nbsp;    
   &nbsp;
 + `PUT /interactivebooks/updatebook`  
   Update book  
-  <sub>postman</sub>
+  <sub>postman</sub>  
   ![](readmeImages/EdgeService/Postman/Updatebook.png)
+  &nbsp;   
+  <sub>swagger</sub>  
   &nbsp;  
-  <sub>swagger</sub> &nbsp;
   ![](readmeImages/EdgeService/Swagger/UpdateBook.png)
   &nbsp;    
   &nbsp;
@@ -225,8 +236,9 @@ Get Book with pages
   Delete page    
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/DeletePage.png)
-  &nbsp;
-  <sub>swagger</sub> &nbsp;
+  &nbsp;  
+  <sub>swagger</sub>  
+  &nbsp;  
   ![](readmeImages/EdgeService/Swagger/DeletePage.png)
   &nbsp;     
   &nbsp;  
