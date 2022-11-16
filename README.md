@@ -189,7 +189,7 @@ Get Book with pages
   ![](readmeImages/EdgeService/Postman/AddPage.png)  
   &nbsp;
   <sub>swagger</sub>  
-  &nbsp;   
+  &nbsp;
 ![](readmeImages/EdgeService/Swagger/AddPage.png)
   &nbsp;    
   &nbsp;
