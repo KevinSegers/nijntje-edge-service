@@ -127,7 +127,7 @@ Get Book with pages
   <sub>postman</sub>
   &nbsp;  
 ![](readmeImages/EdgeService/Postman/GetBookWithPages.png)
-  <sub>swagger</sub>  
+  <sub>swagger</sub>
   &nbsp;
   ![](readmeImages/EdgeService/Swagger/GetBookWithPages.png)
   &nbsp;  
@@ -137,7 +137,7 @@ Get Book with pages
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/GetBookPagesSeen.png)   
   &nbsp;    
-  <sub>swagger</sub>  
+  <sub>swagger</sub>
   &nbsp;
   ![](readmeImages/EdgeService/Swagger/GetBookPagesSeen.png)    
   &nbsp;   
@@ -147,7 +147,7 @@ Get Book with pages
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/GetBooksByCategory.png)    
   &nbsp;  
-  <sub>swagger</sub>  
+  <sub>swagger</sub>
   &nbsp;
   ![](readmeImages/EdgeService/Swagger/GetBooksByCategory.png)   
   &nbsp;    
@@ -157,7 +157,7 @@ Get Book with pages
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/GetItemsFromPage.png)   
   &nbsp;    
-  <sub>swagger</sub>  
+  <sub>swagger</sub>
   &nbsp;
   ![](readmeImages/EdgeService/Swagger/GetItemsFromPage.png)
   &nbsp;    
@@ -167,7 +167,7 @@ Get Book with pages
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/GetCategorieswithUrls.png)  
   &nbsp;  
-  <sub>swagger</sub>  
+  <sub>swagger</sub>
   &nbsp;  
   ![](readmeImages/EdgeService/Swagger/GetCategorieswithurls.png)
   &nbsp;    
@@ -177,7 +177,7 @@ Get Book with pages
   <sub>postman</sub>  
   ![](readmeImages/EdgeService/Postman/GetPageByBookTitleAndPageNumber.png)  
   &nbsp;    
-  <sub>swagger</sub>  
+  <sub>swagger</sub>
   &nbsp;  
 ![](readmeImages/EdgeService/Swagger/GetPageByBookTitleAndPageNumber.png)
   &nbsp;    
@@ -187,7 +187,7 @@ Get Book with pages
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/AddPage.png)  
   &nbsp;  
-  <sub>swagger</sub>  
+  <sub>swagger</sub>
   &nbsp;   
 ![](readmeImages/EdgeService/Swagger/AddPage.png)
   &nbsp;    
@@ -197,7 +197,7 @@ Get Book with pages
   <sub>postman</sub>  
   ![](readmeImages/EdgeService/Postman/GetBookPagesUnseen.png)  
   &nbsp;   
-  <sub>swagger</sub>  
+  <sub>swagger</sub>
   &nbsp;  
 ![](readmeImages/EdgeService/Swagger/SetBookPagesUnseen.png)  
   &nbsp;      
@@ -207,7 +207,7 @@ Get Book with pages
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/UpdatePage.png)  
   &nbsp;  
-  <sub>swagger</sub> 
+  <sub>swagger</sub>
   &nbsp;  
 ![](readmeImages/EdgeService/Swagger/UpdatePage.png)
   &nbsp;    
@@ -217,7 +217,7 @@ Get Book with pages
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/UpdatePageSeen.png)
   &nbsp;    
-  <sub>swagger</sub>    
+  <sub>swagger</sub>
   &nbsp;  
   ![](readmeImages/EdgeService/Swagger/UpdatePageSeen.png)
   &nbsp;    
@@ -227,7 +227,7 @@ Get Book with pages
   <sub>postman</sub>  
   ![](readmeImages/EdgeService/Postman/Updatebook.png)
   &nbsp;   
-  <sub>swagger</sub>  
+  <sub>swagger</sub>
   &nbsp;  
   ![](readmeImages/EdgeService/Swagger/UpdateBook.png)
   &nbsp;    
@@ -237,7 +237,7 @@ Get Book with pages
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/DeletePage.png)
   &nbsp;  
-  <sub>swagger</sub>  
+  <sub>swagger</sub>
   &nbsp;  
   ![](readmeImages/EdgeService/Swagger/DeletePage.png)
   &nbsp;     
