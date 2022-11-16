@@ -25,7 +25,7 @@ The example architecture is as follows:
 
 ![](readmeImages/SchemaProject.png)  
 
-----
+
 ### 2. SET UP DOCKER CONTAINERS
 
 #### 2.1 Local Set up
@@ -57,7 +57,7 @@ Okteto:
 
 ![](readmeImages/Okteto.png)
 
----
+
 &nbsp;
 ### 3. SERVICES
 
