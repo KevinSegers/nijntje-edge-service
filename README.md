@@ -5,7 +5,7 @@
 
 _Background information_  
 The application shows the items on a page in AR. To start the user opens the app and has to choose a category. 
-Per category there are several books. When a book is chosen the camera opens and scans the page. The items on the page will appear!
+Per category there are several books. When a book is chosen the camera opens and the person can scan a page. The items on the page will appear!
 The frond end of the application was made using flutter and wikitude. 
 The models were made using Sketchup.
 
