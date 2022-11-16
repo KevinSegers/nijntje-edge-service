@@ -23,8 +23,9 @@ Link to `docker-compose` repository:  [docker-compose](https://github.com/KevinS
 
 The example architecture is as follows:
 
-![](readmeImages/SchemaProject.png)
+![](readmeImages/SchemaProject.png)  
 
+----
 ### 2. SET UP DOCKER CONTAINERS
 
 #### 2.1 Local Set up
@@ -41,10 +42,25 @@ The example architecture is as follows:
 
 #### 2.2 Run docker compose
 
-Run the docker compose via following url: [docker-compose](https://github.com/KevinSegers/nijntje-docker-compose)) 
+Run the docker compose via following url: [docker-compose](https://github.com/KevinSegers/nijntje-docker-compose)
 
+#### 2.3 Output 
+Sonar cloud: 
+  
+![](readmeImages/Sonar Cloud.png)  
 
+DockerHub:  
+
+![](readmeImages/DockerHub.png)  
+
+Okteto:  
+
+![](readmeImages/Okteto.png)
+
+---
+&nbsp;
 ### 3. SERVICES
+
 #### 3.1 Book-service
 
 **_3.1.1 End points_**
@@ -58,11 +74,16 @@ Run the docker compose via following url: [docker-compose](https://github.com/Ke
 + `PUT /books` &emsp; Update book
 + `DELETE  /books/{booktitle}`&emsp; Delete book   
 
-**_3.1.2 Testing_**   
+&nbsp;
+
+**_3.1.2 Testing_**  
+
 Coverage unit testing: 
+
 ![](readmeImages/Testing/BookControllerUnitTests.png)
 
 Coverage integration testing: 
+
 ![](readmeImages/Testing/BookControllerIntegrationTests.png)
 
 
@@ -85,70 +106,71 @@ Coverage integration testing:
 
 
 **_3.2.2 Testing_**  
-Coverage unit testing:  
+
+Coverage unit testing:   
+
 ![](readmeImages/Testing/PageControllerUnitTests.png)
 
 Coverage integration testing:  
+
 ![](readmeImages/Testing/PageControllerIntegrationTest.png)
 
 
 
 #### 3.3 Edge-service
-**_3.3.1 End points_*  
-&nbsp;  
-![](readmeImages/EdgeSwagger.png)  
-&nbsp;
-+ `GET /interactivebooks/book/{bookTitle}`   
+**_3.3.1 End points_**
+
+  ![](readmeImages/EdgeSwagger.png)  
+  &nbsp;  
++ `GET /interactivebooks/book/{bookTitle}`     
 Get Book with pages  
   <sub>postman</sub>
-![](readmeImages/Edge Service/Postman/9 getBookWithPages.png)
-&nbsp;  
-<sub>swagger</sub> &nbsp;
+  ![](readmeImages/Edge Service/Postman/9 getBookWithPages.png)
+  &nbsp;  
+  <sub>swagger</sub> &nbsp;
   ![](readmeImages/Edge Service/Swagger/GetBookWithPages.png)
-&nbsp;  
-&nbsp;
+  &nbsp;  
+  &nbsp;
 + `GET /interactivebooks/books/{bookTitle}/pagesseen`  
-Get pages seen in decimal  
-<sub>postman</sub>
-![](readmeImages/Edge Service/Postman/7 getBookPagesSeen.png)
-&nbsp;  
-<sub>swagger</sub> &nbsp;
-![](readmeImages/Edge Service/Swagger/GetBookPagesSeen.png)  
-&nbsp;   
-&nbsp;
+  Get pages seen in decimal  
+  <sub>postman</sub>
+  ![](readmeImages/Edge Service/Postman/7 getBookPagesSeen.png)
+  &nbsp;  
+  <sub>swagger</sub> &nbsp;
+  ![](readmeImages/Edge Service/Swagger/GetBookPagesSeen.png)  
+  &nbsp;   
+  &nbsp;
 + `GET /interactivebooks/booksbycategory/{category}`  
   Get books for category  
   <sub>postman</sub>
   ![](readmeImages/Edge Service/Postman/2 getBooksByCategory.png)
   &nbsp;  
   <sub>swagger</sub> &nbsp;
-![](readmeImages/Edge Service/Swagger/GetBooksByCategory.png)   
-&nbsp;    
-&nbsp;
+  ![](readmeImages/Edge Service/Swagger/GetBooksByCategory.png)   
+  &nbsp;    
+  &nbsp;
 + `GET /interactivebooks/booktitle/{bookTitle}/pagenumber/{pageNumber}/items`  
   Get items from page  
   <sub>postman</sub>
   ![](readmeImages/Edge Service/Postman/6 getItemsFromPage.png)
   &nbsp;  
   <sub>swagger</sub> &nbsp;
-![](readmeImages/Edge Service/Swagger/GetItemsFromPage.png)
-&nbsp;    
-&nbsp;
-+ `GET /interactivebooks/categorieswithurls`  
-Get categories with url  
-  <sub>postman</sub>
-![](readmeImages/Edge Service/Postman/1 getCategorieswithUrls.png)
-&nbsp;
-  <sub>swagger</sub> &nbsp;
-![](readmeImages/Edge Service/Swagger/GetCategorieswithurls.png)
+  ![](readmeImages/Edge Service/Swagger/GetItemsFromPage.png)
   &nbsp;    
   &nbsp;
-
++ `GET /interactivebooks/categorieswithurls`  
+  Get categories with url  
+  <sub>postman</sub>
+  ![](readmeImages/Edge Service/Postman/1 getCategorieswithUrls.png)
+  &nbsp;
+  <sub>swagger</sub> &nbsp;
+  ![](readmeImages/Edge Service/Swagger/GetCategorieswithurls.png)
+  &nbsp;    
+  &nbsp;
 + `GET /interactivebooks/pages/booktitle/{bookTitle}/pagenumber/{pageNumber}`  
   Get page by booktitle and pagenumber  
   <sub>postman</sub>
   ![](readmeImages/Edge Service/Postman/5 getPageByBookTitleAndPageNumber.png)
-  &nbsp;
   &nbsp;  
   <sub>swagger</sub> &nbsp;
 ![](readmeImages/Edge Service/Swagger/GetPageByBookTitleAndPageNumber.png)
@@ -158,8 +180,7 @@ Get categories with url
   Add page to bookwithPages  
   <sub>postman</sub>
   ![](readmeImages/Edge Service/Postman/11 addPage.png)
-  &nbsp;
-  &nbsp;  
+  &nbsp;    
   <sub>swagger</sub> &nbsp;
 ![](readmeImages/Edge Service/Swagger/AddPage.png)
   &nbsp;    
@@ -168,7 +189,6 @@ Get categories with url
   Set pages from book unseen   
   <sub>postman</sub>
   ![](readmeImages/Edge Service/Postman/4 setBookPagesUnseen.png)
-  &nbsp;  
   &nbsp;  
   <sub>swagger</sub> &nbsp;
 ![](readmeImages/Edge Service/Swagger/SetBookPagesUnseen.png)
@@ -179,7 +199,6 @@ Get categories with url
   <sub>postman</sub>
   ![](readmeImages/Edge Service/Postman/10 updatePage.png)
   &nbsp;  
-  &nbsp;  
   <sub>swagger</sub> &nbsp;
 ![](readmeImages/Edge Service/Swagger/UpdatePage.png)
   &nbsp;    
@@ -189,16 +208,14 @@ Get categories with url
   <sub>postman</sub>
   ![](readmeImages/Edge Service/Postman/8 updatePageSeen.png)
   &nbsp;  
-  &nbsp;  
   <sub>swagger</sub> &nbsp;
-![](readmeImages/Edge Service/Swagger/UpdatePageSeen.png)
+  ![](readmeImages/Edge Service/Swagger/UpdatePageSeen.png)
   &nbsp;    
   &nbsp;
 + `PUT /interactivebooks/updatebook`  
   Update book  
   <sub>postman</sub>
   ![](readmeImages/Edge Service/Postman/3 updatebook.png)
-  &nbsp;  
   &nbsp;  
   <sub>swagger</sub> &nbsp;
 + ![](readmeImages/Edge Service/Swagger/UpdateBook.png)
@@ -210,10 +227,13 @@ Get categories with url
   ![](readmeImages/Edge Service/Postman/12 deletePage.png)
   &nbsp;
   <sub>swagger</sub> &nbsp;
-![](readmeImages/Edge Service/Swagger/DeletePage.png)
+  ![](readmeImages/Edge Service/Swagger/DeletePage.png)
   &nbsp;     
   &nbsp;  
+
 **_3.3.2 Testing_**  
-coverage unit testing:
+
+coverage unit testing:  
+
 ![](readmeImages/Testing/BookWithPagesUnitTests.png)
 

@@ -158,7 +158,7 @@ public class BookWithPagesController {
     }
 
 
-    //
+    //delete page
     @DeleteMapping("/interactivebooks/pages/booktitle/{bookTitle}/pagenumber/{pageNumber}")
     public ResponseEntity deletePage(@PathVariable String bookTitle, @PathVariable int pageNumber) {
         restTemplate.delete("http://" + pageServiceBaseUrl + "/pages/booktitle/" + bookTitle +"/pagenumber/" + pageNumber);
