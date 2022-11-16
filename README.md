@@ -177,7 +177,7 @@ Get Book with pages
   Get page by booktitle and pagenumber  
   <sub>postman</sub>  
   ![](readmeImages/EdgeService/Postman/GetPageByBookTitleAndPageNumber.png)  
-  &nbsp;    
+  &nbsp;
   <sub>swagger</sub>  
   &nbsp;
 ![](readmeImages/EdgeService/Swagger/GetPageByBookTitleAndPageNumber.png)
@@ -187,7 +187,7 @@ Get Book with pages
   Add page to bookwithPages  
   <sub>postman</sub>
   ![](readmeImages/EdgeService/Postman/AddPage.png)  
-  &nbsp;  
+  &nbsp;
   <sub>swagger</sub>  
   &nbsp;   
 ![](readmeImages/EdgeService/Swagger/AddPage.png)
