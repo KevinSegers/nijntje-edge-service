@@ -49,14 +49,13 @@ Run the docker compose via following url: [docker-compose](https://github.com/Ke
 
 **_3.1.1 End points_**
 
-
 ![](readmeImages/BookSwagger.png)
 
-+ `GET /books`&emsp; Get all books   
-+ `POST /books`&emsp; Add book
-+ `PUT /books` &emsp; Update book
++ `GET /books`&emsp; Get all books
 + `GET /books/title/{title}`&emsp; Get book by title
 + `GET /books/category/{category}`&emsp; Get all books by category
++ `POST /books`&emsp; Add book
++ `PUT /books` &emsp; Update book
 + `DELETE  /books/{booktitle}`&emsp; Delete book   
 
 **_3.1.2 Testing_**   
@@ -75,14 +74,15 @@ Coverage integration testing:
 ![](readmeImages/PageSwagger.png)
 
 + `GET /pages` &emsp; Get all pages
-+ `POST /pages`&emsp;Add a page
-+ `PUT /pages` &emsp; Update a page
 + `GET /pages/booktitle/{bookTitle}` &emsp; Get all pages from book
-+ `DELETE /pages/booktitle/{bookTitle}/pagenumber/{pageNumber}` &emsp; Delete a page
 + `GET /pages/booktitle/{bookTitle}/pagenumber/{pageNumber}" ` &emsp;   Get one page by booktitle and pagenumber
 + `GET /pages/booktitle/{bookTitle}/pagenumber/{pageNumber}/items` &emsp; Get all items from a page
 + `GET /pages/booktitle/{bookTitle}/pagesseen` &emsp; Get seen pages in double
++ `POST /pages`&emsp;Add a page
++ `PUT /pages` &emsp; Update a page
 + `PUT /pages/booktitle/{bookTitle}/setpagesunseen` &emsp; Set all pages of a book unseen
++ `DELETE /pages/booktitle/{bookTitle}/pagenumber/{pageNumber}` &emsp; Delete a page
+
 
 **_3.2.2 Testing_**  
 Coverage unit testing:  
@@ -94,71 +94,125 @@ Coverage integration testing:
 
 
 #### 3.3 Edge-service
-**_3.3.1 End points_**
+**_3.3.1 End points_*  
+&nbsp;  
 ![](readmeImages/EdgeSwagger.png)  
 &nbsp;
 + `GET /interactivebooks/book/{bookTitle}`   
 Get Book with pages  
+  <sub>postman</sub>
 ![](readmeImages/Edge Service/Postman/9 getBookWithPages.png)
-&nbsp; 
-
+&nbsp;  
+<sub>swagger</sub> &nbsp;
+  ![](readmeImages/Edge Service/Swagger/GetBookWithPages.png)
+&nbsp;  
+&nbsp;
 + `GET /interactivebooks/books/{bookTitle}/pagesseen`  
 Get pages seen in decimal  
-![](readmeImages/Edge Service/Postman/7 getBookPagesSeen.png)  
+<sub>postman</sub>
+![](readmeImages/Edge Service/Postman/7 getBookPagesSeen.png)
+&nbsp;  
+<sub>swagger</sub> &nbsp;
+![](readmeImages/Edge Service/Swagger/GetBookPagesSeen.png)  
+&nbsp;   
 &nbsp;
-
-+ `PUT /interactivebooks/books/{bookTitle}/setpagesunseen`  
-  Set pages from book unseen  
-  ![](readmeImages/Edge Service/Postman/4 setBookPagesUnseen.png)
-  &nbsp;
-
 + `GET /interactivebooks/booksbycategory/{category}`  
   Get books for category  
+  <sub>postman</sub>
   ![](readmeImages/Edge Service/Postman/2 getBooksByCategory.png)
-  &nbsp;
-
+  &nbsp;  
+  <sub>swagger</sub> &nbsp;
+![](readmeImages/Edge Service/Swagger/GetBooksByCategory.png)   
+&nbsp;    
+&nbsp;
 + `GET /interactivebooks/booktitle/{bookTitle}/pagenumber/{pageNumber}/items`  
-  Get items from page
+  Get items from page  
+  <sub>postman</sub>
   ![](readmeImages/Edge Service/Postman/6 getItemsFromPage.png)
-  &nbsp;
-
+  &nbsp;  
+  <sub>swagger</sub> &nbsp;
+![](readmeImages/Edge Service/Swagger/GetItemsFromPage.png)
+&nbsp;    
+&nbsp;
 + `GET /interactivebooks/categorieswithurls`  
 Get categories with url  
+  <sub>postman</sub>
 ![](readmeImages/Edge Service/Postman/1 getCategorieswithUrls.png)
 &nbsp;
-
-+ `POST /interactivebooks/pages`  
-  Add page to bookwithPages  
-  ![](readmeImages/Edge Service/Postman/11 addPage.png)
+  <sub>swagger</sub> &nbsp;
+![](readmeImages/Edge Service/Swagger/GetCategorieswithurls.png)
+  &nbsp;    
   &nbsp;
-
-+ `PUT /interactivebooks/pages`  
-  Update page from Book with page
-  ![](readmeImages/Edge Service/Postman/10 updatePage.png)
-  &nbsp;
-
-+ `DELETE /interactivebooks/pages/booktitle/{bookTitle}/pagenumber/{pageNumber}`  
-  Delete page  
-  ![](readmeImages/Edge Service/Postman/12 deletePage.png)
-  &nbsp;
-
 
 + `GET /interactivebooks/pages/booktitle/{bookTitle}/pagenumber/{pageNumber}`  
-Get page by booktitle and pagenumber
-![](readmeImages/Edge Service/Postman/5 getPageByBookTitleAndPageNumber.png)
-&nbsp;
-
-
-+ `PUT /interactivebooks/pages/booktitle/{bookTitle}/pagenumber/{pageNumber}`  
-Update page to seen given booktitle and pagenumber
-![](readmeImages/Edge Service/Postman/8 updatePageSeen.png)
-&nbsp;
-
-+ `PUT /interactivebooks/updatebook`  
-  Update book
-  ![](readmeImages/Edge Service/Postman/3 updatebook.png)
+  Get page by booktitle and pagenumber  
+  <sub>postman</sub>
+  ![](readmeImages/Edge Service/Postman/5 getPageByBookTitleAndPageNumber.png)
   &nbsp;
-
+  &nbsp;  
+  <sub>swagger</sub> &nbsp;
+![](readmeImages/Edge Service/Swagger/GetPageByBookTitleAndPageNumber.png)
+  &nbsp;    
+  &nbsp;
++ `POST /interactivebooks/pages`  
+  Add page to bookwithPages  
+  <sub>postman</sub>
+  ![](readmeImages/Edge Service/Postman/11 addPage.png)
+  &nbsp;
+  &nbsp;  
+  <sub>swagger</sub> &nbsp;
+![](readmeImages/Edge Service/Swagger/AddPage.png)
+  &nbsp;    
+  &nbsp;
++ `PUT /interactivebooks/books/{bookTitle}/setpagesunseen`  
+  Set pages from book unseen   
+  <sub>postman</sub>
+  ![](readmeImages/Edge Service/Postman/4 setBookPagesUnseen.png)
+  &nbsp;  
+  &nbsp;  
+  <sub>swagger</sub> &nbsp;
+![](readmeImages/Edge Service/Swagger/SetBookPagesUnseen.png)
+  &nbsp;    
+  &nbsp;
++ `PUT /interactivebooks/pages`  
+  Update page from Book with page  
+  <sub>postman</sub>
+  ![](readmeImages/Edge Service/Postman/10 updatePage.png)
+  &nbsp;  
+  &nbsp;  
+  <sub>swagger</sub> &nbsp;
+![](readmeImages/Edge Service/Swagger/UpdatePage.png)
+  &nbsp;    
+  &nbsp;
++ `PUT /interactivebooks/pages/booktitle/{bookTitle}/pagenumber/{pageNumber}`  
+  Update page to seen given booktitle and pagenumber  
+  <sub>postman</sub>
+  ![](readmeImages/Edge Service/Postman/8 updatePageSeen.png)
+  &nbsp;  
+  &nbsp;  
+  <sub>swagger</sub> &nbsp;
+![](readmeImages/Edge Service/Swagger/UpdatePageSeen.png)
+  &nbsp;    
+  &nbsp;
++ `PUT /interactivebooks/updatebook`  
+  Update book  
+  <sub>postman</sub>
+  ![](readmeImages/Edge Service/Postman/3 updatebook.png)
+  &nbsp;  
+  &nbsp;  
+  <sub>swagger</sub> &nbsp;
++ ![](readmeImages/Edge Service/Swagger/UpdateBook.png)
+  &nbsp;    
+  &nbsp;
++ `DELETE /interactivebooks/pages/booktitle/{bookTitle}/pagenumber/{pageNumber}`  
+  Delete page    
+  <sub>postman</sub>
+  ![](readmeImages/Edge Service/Postman/12 deletePage.png)
+  &nbsp;
+  <sub>swagger</sub> &nbsp;
+![](readmeImages/Edge Service/Swagger/DeletePage.png)
+  &nbsp;     
+  &nbsp;  
 **_3.3.2 Testing_**  
 coverage unit testing:
 ![](readmeImages/Testing/BookWithPagesUnitTests.png)
