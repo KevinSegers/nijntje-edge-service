@@ -12,10 +12,13 @@ The models were made using Sketchup.
 _Introduction & Documentation_  
 This repository contains the project of Advanced programming topics of coding microservices using Spring Boot.
 One _Edge service_ `brank-edge-service` will connect to two lower services `book-service` and `page-service` to request information which it will then process and combine into a single response to the user. 
-The user is only supposed to communicate with the `brank-edge-service`.
+The user is only supposed to communicate with the `brank-edge-service`.  We used github-actions to: docker-hub, sonarcloud and docker compose to deploy the project on okteto cloud.
 
+
+Link to `edge-service` repository:  [edge-service](https://github.com/KevinSegers/nijntje-edge-service)  
 Link to `book-service` repository:  [book-service](https://github.com/KevinSegers/nijntje-book-service)  
 Link to `page-service` repository:  [page-service](https://github.com/KevinSegers/nijntje-page-service) 
+Link to `docker-compose` repository:  [docker-compose](https://github.com/KevinSegers/nijntje-docker-compose)) 
 
 
 The example architecture is as follows:
@@ -25,13 +28,63 @@ The example architecture is as follows:
 
 ### 2. SET UP DOCKER CONTAINERS
 
-#### Set up the Docker container with the MySQL database:
+#### 2.1 Local Set up
+
+**Set up the Docker container with the MySQL database:**
 
 `docker run --name books-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=abc123 -d mysql `
 
-#### Set up the Docker container with the MongoDB database:
+**Set up the Docker container with the MongoDB database:**
 
 `docker run --name pages-mongodb -p 27017-27019:27017-27019 -d mongo`
 
+**Run the local set up**
+
+#### 2.2 Run docker compose
+
+Run the docker compose via following url: [docker-compose](https://github.com/KevinSegers/nijntje-docker-compose)) 
+
 
 ### 3. SERVICES
+#### 3.1 Book-service
+screenshot swagger
+**3.1.1 End points**
+_GET /books/title/{title}_  Get book by title  screenshot postman: 
+
+_GET /books/category/{category}_  Get all books by category  screenshot postman:   
+
+_GET /books_  Get all books   screenshot postman: 
+
+_POST /books_  Add book   screenshot postman: 
+
+_PUT /books_  Update book   screenshot postman: 
+
+_DELETE  /books/{booktitle}_  Delete book   screenshot postman: 
+
+
+**3.1.2 Testing**
+image testing coverage unit + integration
+
+
+
+
+#### 3.2 Page-service
+screenshot swagger
+
+**3.2.1 End points**
+
+
+
+**3.2.2 Testing**
+image testing coverage unit + integration
+
+
+#### 3.3 Edge-service
+screenshot swagger
+**3.3.1 End points**
+
+
+
+**3.3.2 Testing**
+image testing coverage unit testen
+
