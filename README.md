@@ -15,7 +15,7 @@ One _Edge service_ `brank-edge-service` will connect to two lower services `book
 The user is only supposed to communicate with the `brank-edge-service`.  We used github-actions to: docker-hub, sonarcloud and docker compose to deploy the project on okteto cloud.
 
 
-Link to `edge-service` repository:  [edge-service](https://github.com/KevinSegers/nijntje-edge-service)  
+Link to `edge-service` repository:  [edge-service](https://github.com/KevinSegers/nijntje-edge-service)   
 Link to `book-service` repository:  [book-service](https://github.com/KevinSegers/nijntje-book-service)  
 Link to `page-service` repository:  [page-service](https://github.com/KevinSegers/nijntje-page-service) 
 Link to `docker-compose` repository:  [docker-compose](https://github.com/KevinSegers/nijntje-docker-compose)) 
@@ -47,23 +47,43 @@ Run the docker compose via following url: [docker-compose](https://github.com/Ke
 
 ### 3. SERVICES
 #### 3.1 Book-service
-screenshot swagger
-**3.1.1 End points**
-_GET /books/title/{title}_  Get book by title  screenshot postman: 
 
-_GET /books/category/{category}_  Get all books by category  screenshot postman:   
+![](readmeImages/BookSwagger.png)
 
-_GET /books_  Get all books   screenshot postman: 
+**_3.1.1 End points_**  
 
-_POST /books_  Add book   screenshot postman: 
+**GET /books**  
+Get all books   
+screenshot postman: 
 
-_PUT /books_  Update book   screenshot postman: 
+**POST /books**  
+Add book   
+screenshot postman: 
 
-_DELETE  /books/{booktitle}_  Delete book   screenshot postman: 
+**PUT /books**  
+Update book   
+
+screenshot postman: 
+
+**GET /books/title/{title}**  
+Get book by title  
+screenshot postman:
+
+**GET /books/category/{category}**   
+Get all books by category  
+screenshot postman:
 
 
-**3.1.2 Testing**
-image testing coverage unit + integration
+**DELETE  /books/{booktitle}**  
+Delete book   
+screenshot postman: 
+
+
+**_3.1.2 Testing_**  
+Coverage unittesting: 
+
+
+Coverage integration testing: 
 
 
 
